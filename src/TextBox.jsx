@@ -47,17 +47,19 @@ function TextBox({ searchResult }) {
       <h3>Synonyms:</h3>
       {searchResult[0].meanings.map((meaning, index) => (
         <div key={index}>
-          {meaning.synonyms && meaning.synonyms.length > 0 ? (
+          {meaning.synonyms && meaning.synonyms.length > 0 && (
             <div>
               {meaning.synonyms.map((synonym, idx) => (
                 <div key={idx}>{synonym}</div>
               ))}
             </div>
-          ) : (
-            <p>No synonyms found.</p>
           )}
         </div>
       ))}
+      {searchResult[0].meanings.every((meaning) => !meaning.synonyms || meaning.synonyms.length === 0) && (
+        <p>No synonyms found.</p>
+      )}
+
 
       {/* Antonyms */}
       <h3>Antonyms:</h3>
