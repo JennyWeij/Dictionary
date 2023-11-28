@@ -34,10 +34,10 @@ function SearchComponent({ onSearch }) {
       <h2>Find your word</h2>
       <input
         type="text"
-        placeholder="Enter word..."
+        placeholder="Enter a word..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ height: '35px', color: 'beige', marginBottom: '20px', marginTop: '10px' }}
+        style={{ height: '35px', width:"250px", color: 'beige', marginBottom: '20px', marginTop: '10px', border: "3px solid beige" }}
       />
       <br />
       <button style={{ marginBottom: '30px' }} onClick={() => handleSearch(searchTerm)}>
