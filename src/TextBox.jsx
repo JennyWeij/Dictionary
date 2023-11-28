@@ -11,30 +11,30 @@ function TextBox({ searchResult }) {
     <div style={{ backgroundColor: "#043606" }}>
       <h2>Word: {searchResult[0].word}</h2>     
 
-    {/* Phonetics */}
-<h3>Phonetics:</h3>
-{searchResult[0].phonetics.map((phonetic, index) => (
-  <div key={index}>
-    {phonetic.text} <br />
-    {phonetic.audio && (
-      <audio controls>
-        <source src={phonetic.audio} type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-    )}
-    {phonetic.sourceUrl && (
-      <p>
-        Source URL: <a href={phonetic.sourceUrl} target="_blank" rel="noopener noreferrer">{phonetic.sourceUrl}</a>
-      </p>
-    )}
-    {phonetic.license && (
-      <div>
-        <p>License Name: {phonetic.license.name}</p>
-        <p>License URL: <a href={phonetic.license.url} target="_blank" rel="noopener noreferrer">{phonetic.license.url}</a></p>
-      </div>
-    )}
-  </div>
-))}
+      {/* Phonetics */}
+      <h3>Phonetics:</h3>
+      {searchResult[0].phonetics.map((phonetic, index) => (
+        <div key={index}>
+          {phonetic.text} <br />
+          {phonetic.audio && (
+            <audio controls>
+              <source src={phonetic.audio} type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          )}
+          {phonetic.sourceUrl && (
+            <p>
+              Source URL: <a href={phonetic.sourceUrl} target="_blank" rel="noopener noreferrer">{phonetic.sourceUrl}</a>
+            </p>
+          )}
+          {phonetic.license && (
+            <div>
+              <p>License Name: {phonetic.license.name}</p>
+              <p>License URL: <a href={phonetic.license.url} target="_blank" rel="noopener noreferrer">{phonetic.license.url}</a></p>
+            </div>
+          )}
+        </div>
+      ))}
 
 
       {/*Meanings*/}
@@ -71,7 +71,6 @@ function TextBox({ searchResult }) {
       {searchResult[0].meanings.every((meaning) => !meaning.synonyms || meaning.synonyms.length === 0) && (
         <p>No synonyms found.</p>
       )}
-
 
       {/* Antonyms */}
       <h3>Antonyms:</h3>
