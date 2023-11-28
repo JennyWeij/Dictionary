@@ -29,12 +29,13 @@ function SearchComponent ({ onSearch }) {
         placeholder="Enter word..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ height: '35px', color: "beige", marginBottom:"20px" }}
+        style={{ height: '35px', color: "beige", marginBottom:"20px", marginTop:"10px" }}
       />
       <br/>
-      <button onClick={() => handleSearch(searchTerm)}>
+      <button style={{ marginBottom:"30px" }} onClick={() => handleSearch(searchTerm)}>
         Search
       </button>
+      <br/><br/>
   
            {/* Pass searchResult to TextBox */}
            <TextBox searchResult={searchResult} />
