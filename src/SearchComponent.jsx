@@ -45,7 +45,7 @@ function SearchComponent({ onSearch }) {
       </button>
       <br />
       {/* Display error message if it exists */}
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {errorMessage && <p style={{ color: 'beige' }}>{errorMessage}</p>}
 
       {/* Pass searchResult to TextBox */}
       <TextBox searchResult={searchResult} />
