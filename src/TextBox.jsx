@@ -41,8 +41,39 @@ function TextBox({ searchResult }) {
           </div>
         </div>
       ))}
-    </div>
-  );
-}
+
+      {/* Synonyms */}
+      <h3>Synonyms:</h3>
+      {searchResult[0].meanings.map((meaning, index) => (
+        <div key={index}>
+          {meaning.synonyms && meaning.synonyms.length > 0 ? (
+            <div>
+              {meaning.synonyms.map((synonym, idx) => (
+                <div key={idx}>{synonym}</div>
+              ))}
+            </div>
+          ) : (
+            <p>No synonyms found.</p>
+          )}
+        </div>
+      ))}
+
+      {/* Antonyms */}
+      <h3>Antonyms:</h3>
+      {searchResult[0].meanings.map((meaning, index) => (
+        <div key={index}>
+          {meaning.antonyms && meaning.antonyms.length > 0 ? (
+            <div> 
+              {meaning.antonyms.map((antonym, idx) => (
+                <div key={idx}>{antonym}</div>
+              ))}
+            </div>
+          ) : (
+            <p>No antonyms found.</p>
+          )}
+        </div>
+      ))}
+</div>
+)}
 
 export default TextBox;
