@@ -10,35 +10,35 @@ function TextBox({ searchResult }) {
     <div style={{ backgroundColor: "#043606" }}>
       <h2>Word: {searchResult[0].word}</h2>     
 
-      <h3>Phonetics:</h3>
-      <ul>
-        {searchResult[0].phonetics.map((phonetic, index) => (
-          <li key={index}>
-            {phonetic.text}{' '}
-            {phonetic.audio && (
-              <audio controls>
-                <source src={phonetic.audio} type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-            )}
-          </li>
-        ))}
-      </ul> 
+      {/* <h3>Phonetics:</h3> */}
+      {searchResult[0].phonetics.map((phonetic, index) => (
+      <div key={index}>
+        {phonetic.text}{' '}
+        <br />
+        {phonetic.audio && (
+      <audio controls>
+         <br />
+        <source src={phonetic.audio} type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+      )}
+    </div>
+  ))}
 
-      <h3>Meanings:</h3>
+      {/* <h3>Meanings:</h3> */}
       {searchResult[0].meanings.map((meaning, index) => (
         <div key={index}>
           <h4>{meaning.partOfSpeech}</h4>
-          <ul>
+          <div>
             {meaning.definitions.map((definition, idx) => (
-              <li key={idx}>
+              <div key={idx}>
                 {definition.definition}
                 {definition.example && (
                   <p>Example: {definition.example}</p>
                 )}
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       ))}
     </div>
