@@ -101,11 +101,11 @@ function TextBox({ searchResult }) {
       {/* Source URLs */}
       <h3>Source URLs:</h3>
       {searchResult[0].sourceUrls && searchResult[0].sourceUrls.length > 0 && (
-        <ul>
+        <div>
           {searchResult[0].sourceUrls.map((url, index) => (
-            <li key={index}><a href={url} target="_blank" rel="noopener noreferrer">{url}</a></li>
+            <div key={index}><a href={url} target="_blank" rel="noopener noreferrer">{url}</a></div>
           ))}
-        </ul>
+        </div>
       )}
 
 </div>
