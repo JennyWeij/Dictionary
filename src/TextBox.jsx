@@ -11,22 +11,34 @@ function TextBox({ searchResult }) {
     <div style={{ backgroundColor: "#043606" }}>
       <h2>Word: {searchResult[0].word}</h2>     
 
-      {/* <h3>Phonetics:</h3> */}
-      {searchResult[0].phonetics.map((phonetic, index) => (
-      <div key={index}>
-        {phonetic.text}{' '}
-        <br />
-        {phonetic.audio && (
+    {/* Phonetics */}
+<h3>Phonetics:</h3>
+{searchResult[0].phonetics.map((phonetic, index) => (
+  <div key={index}>
+    {phonetic.text} <br />
+    {phonetic.audio && (
       <audio controls>
-         <br />
         <source src={phonetic.audio} type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
-      )}
+    )}
+    {phonetic.sourceUrl && (
+      <p>
+        Source URL: <a href={phonetic.sourceUrl} target="_blank" rel="noopener noreferrer">{phonetic.sourceUrl}</a>
+      </p>
+    )}
+    {phonetic.license && (
+      <div>
+        <p>License Name: {phonetic.license.name}</p>
+        <p>License URL: <a href={phonetic.license.url} target="_blank" rel="noopener noreferrer">{phonetic.license.url}</a></p>
       </div>
-  ))}
+    )}
+  </div>
+))}
 
-      {/* <h3>Meanings:</h3> */}
+
+      {/*Meanings*/}
+      <h3>Meanings:</h3>
       {searchResult[0].meanings.map((meaning, index) => (
         <div key={index}>
           <h4>{meaning.partOfSpeech}</h4>
@@ -76,6 +88,25 @@ function TextBox({ searchResult }) {
       ))}
       {searchResult[0].meanings.every((meaning) => !meaning.antonyms || meaning.antonyms.length === 0) && (
         <p>No antonyms found.</p>
+      )}
+
+      {/* License */}
+      <h3>License:</h3>
+      {searchResult[0].license && (
+        <div>
+          <p>License Name: {searchResult[0].license.name}</p>
+          <p>License URL: <a href={searchResult[0].license.url} target="_blank" rel="noopener noreferrer">{searchResult[0].license.url}</a></p>
+        </div>
+      )}
+
+      {/* Source URLs */}
+      <h3>Source URLs:</h3>
+      {searchResult[0].sourceUrls && searchResult[0].sourceUrls.length > 0 && (
+        <ul>
+          {searchResult[0].sourceUrls.map((url, index) => (
+            <li key={index}><a href={url} target="_blank" rel="noopener noreferrer">{url}</a></li>
+          ))}
+        </ul>
       )}
 
 </div>
