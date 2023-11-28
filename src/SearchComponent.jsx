@@ -35,7 +35,7 @@ function SearchComponent ({ onSearch }) {
       <button onClick={() => handleSearch(searchTerm)}>
         Search
       </button>
-      <div style={{ height: '1px', width: "500px", backgroundColor: "beige", marginBottom:"25px", marginLeft:"150px", marginTop:"25px", }}></div>
+  
            {/* Pass searchResult to TextBox */}
            <TextBox searchResult={searchResult} />
     </div>

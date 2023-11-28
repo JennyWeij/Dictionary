@@ -7,6 +7,7 @@ function TextBox({ searchResult }) {
   console.log(searchResult);
 
   return (
+    
     <div style={{ backgroundColor: "#043606" }}>
       <h2>Word: {searchResult[0].word}</h2>     
 
@@ -22,7 +23,7 @@ function TextBox({ searchResult }) {
         Your browser does not support the audio element.
       </audio>
       )}
-    </div>
+      </div>
   ))}
 
       {/* <h3>Meanings:</h3> */}
