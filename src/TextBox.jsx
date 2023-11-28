@@ -63,17 +63,19 @@ function TextBox({ searchResult }) {
       <h3>Antonyms:</h3>
       {searchResult[0].meanings.map((meaning, index) => (
         <div key={index}>
-          {meaning.antonyms && meaning.antonyms.length > 0 ? (
-            <div> 
+          {meaning.antonyms && meaning.antonyms.length > 0 && (
+            <div>
               {meaning.antonyms.map((antonym, idx) => (
                 <div key={idx}>{antonym}</div>
               ))}
             </div>
-          ) : (
-            <p>No antonyms found.</p>
           )}
         </div>
       ))}
+      {searchResult[0].meanings.every((meaning) => !meaning.antonyms || meaning.antonyms.length === 0) && (
+        <p>No antonyms found.</p>
+      )}
+
 </div>
 )}
 
