@@ -14,7 +14,6 @@ function SearchComponent({ onSearch }) {
     }
     setErrorMessage(null); 
     setIsLoading(true);
-    
     try {
       const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
       const data = await response.json();
@@ -46,7 +45,7 @@ function SearchComponent({ onSearch }) {
       {errorMessage && <p style={{ color: 'beige' }}>{errorMessage}</p>}
 
       {/* Pass searchResult to TextBox */}
-      <TextBox searchResult={searchResult} />
+      <TextBox searchResult={searchResult} searchTerm={searchTerm} />
     </div>
   );
 }

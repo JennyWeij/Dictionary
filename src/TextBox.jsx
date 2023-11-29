@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TextBox({ searchResult }) {
+function TextBox({ searchResult, searchTerm }) {
   if (!searchResult) {
     return null; // You might want to render a loading indicator or default message
   }
@@ -17,7 +17,7 @@ function TextBox({ searchResult }) {
         <div key={index}>
           {phonetic.text} <br />
           {phonetic.audio && (
-            <audio controls>
+           <audio key={searchTerm} controls>
               <source src={phonetic.audio} type="audio/mpeg" />
               Your browser does not support the audio element.
             </audio>
