@@ -22,13 +22,14 @@ function App() {
 
   return (
     <>
-      <SearchComponent onSearch={handleSearch} />
+      <SearchComponent />
       {isLoading ? (
         <p>Loading...</p>
       ) : (
         <TextBox searchResult={searchResult} />
       )}
     </>
-    );
-  }
-export default App
+  );
+}
+
+export default App;

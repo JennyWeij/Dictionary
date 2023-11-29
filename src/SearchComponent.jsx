@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TextBox from './TextBox';
 
-function SearchComponent({ onSearch }) {
+function SearchComponent() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [searchResult, setSearchResult] = useState(null);
