@@ -1,11 +1,11 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
-describe('something truthy and falsy', () => {
-  it('true to be true', () => {
+describe('does the serach button work', () => {
+  test('true to be true', () => {
     expect(true).toBe(true);
   });
 
-  it('false to be false', () => {
+  test('false to be false', () => {
     expect(false).toBe(false);
   });
 });
