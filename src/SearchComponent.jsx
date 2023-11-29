@@ -12,6 +12,7 @@ function SearchComponent() {
       setErrorMessage('Please enter a word');
       return;
     }
+    
     setErrorMessage(null); 
     setIsLoading(true);
     try {
