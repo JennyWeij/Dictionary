@@ -12,10 +12,9 @@ function SearchComponent({ onSearch }) {
       setErrorMessage('Please enter a word');
       return;
     }
-
-    setErrorMessage(null); // Reset error message
+    setErrorMessage(null); 
     setIsLoading(true);
-
+    
     try {
       const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
       const data = await response.json();
@@ -24,7 +23,6 @@ function SearchComponent({ onSearch }) {
       console.error('Error fetching data:', error);
       setSearchResult(null);
     }
-
     setIsLoading(false);
   };
 
