@@ -5,7 +5,7 @@ import { expect } from "vitest";
 import SearchComponent from './src/SearchComponent';
 
 describe('Searchfield in SearchComponent', () => {
-test("inputfield should proparly handle valid input in the search field", async () => {
+test("valid input is processed by the search field", async () => {
   render(<SearchComponent errorMessageElement={""} />);
   
   const user = userEvent.setup();
