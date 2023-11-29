@@ -12,11 +12,9 @@ function App() {
     try {
       const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
       const data = await response.json();
-      // Assuming the API returns an array of definitions
       setSearchResult(data);
     } catch (error) {
       console.error('Error fetching data:', error);
-      // Handle error, e.g., display an error message to the user
       setSearchResult(null);
     }
     setIsLoading(false);
