@@ -1,5 +1,3 @@
-import React from 'react';
-
 function TextBox({ searchResult }) {
   if (!searchResult) {
     return null; // You might want to render a loading indicator or default message

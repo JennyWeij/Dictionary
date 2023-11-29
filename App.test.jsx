@@ -1,18 +1,23 @@
-import { describe, expect } from 'vitest';
+// Import necessary libraries and components
+import { render, screen } from "@testing-library/react";
+import userEvent from '@testing-library/user-event';
+import { expect } from "vitest";
+import SearchComponent from './src/SearchComponent';
 
-describe('does the input field work', () => {
-  it("should throw an error with numbers or nothing as input", () => {
-     // Test with a number
-  expect(() => concatenate.add(5, "asd")).toThrow();
+test("should show an error message when searchfield is invalid or empty", async () => {
+  // Render the SearchComponent
+  render(<SearchComponent />);
+  
+  // Perform user interaction (click the search button)
+  const user = userEvent.setup();
+  const searchButton = screen.getByRole("button", { name: "Search" });
+  await user.click(searchButton);
 
-  // Test with an empty string
-  expect(() => concatenate.add("", "asd")).toThrow();
-
-  // Test with undefined or null
-  expect(() => concatenate.add(undefined, "asd")).toThrow();
-  expect(() => concatenate.add(null, "asd")).toThrow();
-
-  // Test with nothing (assuming concatenate.add takes two arguments)
-  expect(() => concatenate.add()).toThrow();
+  // Use a custom matcher function to find the error message
+  const errorMessageElement = screen.getByText((content, element) => {
+    return element.tagName.toLowerCase() === 'p' && content.toLowerCase().includes('please enter a word');
   });
+
+  // Assert that the error message element is in the document
+  expect(errorMessageElement).toBeInTheDocument();
 });
