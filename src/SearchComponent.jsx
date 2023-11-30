@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import TextBox from './TextBox';
 
-// Function to handle the search logic
 function SearchComponent() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +25,6 @@ function SearchComponent() {
       console.error('Error fetching data:', error);
       setSearchResult(null);
     }
-  // Set loading state back to false after the API request is complete
     setIsLoading(false);
   };
 
