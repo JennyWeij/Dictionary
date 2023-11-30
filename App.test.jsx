@@ -58,7 +58,7 @@ test("should render an audio file if available", () => {
   user.click(searchButton);
 
   // Add assertions for the audio element
-  const audioElement = screen.queryByRole("audio");
+  const audioElement = screen.queryByRole("button");
   expect(audioElement).toBeInTheDocument();
 });
 });

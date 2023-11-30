@@ -38,7 +38,7 @@ function SearchComponent() {
         style={{ height: '35px', width:"250px", color: 'beige', marginBottom: '20px', marginTop: '10px', border: "3px solid beige" }}
       />
       <br />
-      <button style={{ marginBottom: '30px' }} onClick={() => handleSearch(searchTerm)}>
+      <button style={{ marginBottom: '30px', backgroundColor:"beige", color: "#043606" }} onClick={() => handleSearch(searchTerm)}>
         Search
       </button>
       <br />

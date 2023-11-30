@@ -22,9 +22,9 @@ function TextBox({ searchResult }) {
         <div key={index}>
           {phonetic.text} <br />
           {phonetic.audio && (
-            <div onClick = {() => playAudio(phonetic.audio)}>
-              <FaRegCirclePlay style={{ fontSize: '48px', cursor: "pointer" }} />
-            </div>
+            <button style={{ backgroundColor:"#043606", color: "beige", transition:"none", border: "none" }} onClick = {() => playAudio(phonetic.audio)}>
+              <FaRegCirclePlay style={{ fontSize: '48px', cursor: "pointer", transition:"none" }} />
+            </button>
           )}
           {phonetic.sourceUrl && (
             <p>
