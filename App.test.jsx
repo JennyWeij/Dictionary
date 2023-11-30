@@ -1,85 +1,96 @@
-// Import necessary libraries and components
 import { render, screen, waitFor } from "@testing-library/react";
 import { userEvent } from '@testing-library/user-event';
 import { expect } from "vitest";
+import App from "./src/App";
 import SearchComponent from './src/SearchComponent';
 
-
 describe('Searchfield in SearchComponent', () => {
-test("renders input field", () => {
-  render(<SearchComponent />);
-  const inputElement = screen.getByPlaceholderText("Enter a word...");
-  expect(inputElement).toBeInTheDocument();
-});
+  test("renders input field", () => {
+    render(<SearchComponent />);
+    const inputElement = screen.getByPlaceholderText("Enter a word...");
+    expect(inputElement).toBeInTheDocument();
+  });
 });
 
+// Test for inputfield
 describe('Input in Searchfield', () => {
-test("valid input is processed by the search field", async () => {
-  render(<SearchComponent errorMessageElement={""} />);
-  
-  const user = userEvent.setup();
-  const searchField = screen.getByRole("textbox")
-  await user.type(searchField, "hello");
-  await waitFor(() => expect(searchField).toHaveValue("hello"));
-  const searchButton = screen.getByRole("button", { name: "Search" });
-  await user.click(searchButton);
-
+  test("valid input is processed by the search field", async () => {
+    render(<SearchComponent errorMessageElement={""} />);
+    
+    // Set up the user event
+    const user = userEvent.setup();
+    // Find the search field
+    const searchField = screen.getByRole("textbox");
+    // Type "hello" into the search field
+    await user.type(searchField, "hello");
+    // Wait for the value in the search field to be updated
+    await waitFor(() => expect(searchField).toHaveValue("hello"));
+    // Find the search button
+    const searchButton = screen.getByRole("button", { name: "Search" });
+    // Click the search button
+    await user.click(searchButton);
+  });
 });
 
+// Test for fetching and rendering data from the API when the button is clicked in App
+describe('Button in SearchComponent', () => {
+  test("fetches and renders data from the API when the button is clicked", async () => {
+    // Render the App component
+    render(<App />);
+    // Set up user event
+    const user = userEvent.setup();
+    // Find the search field
+    const searchField = screen.getByPlaceholderText("Enter a word...");
+    // Type "hello" into the search field
+    user.type(searchField, "hello");
+    // Find the search button
+    const searchButton = screen.getByRole("button", { name: "Search" });
+    // Click the search button
+    user.click(searchButton);
+
+    // Wait for the data to be rendered
+    await waitFor(() => {
+      // Find the word element in the rendered content
+      const wordElement = screen.getByText("hello", { exact: false });
+      // Verify that the word element is in the document
+      expect(wordElement).toBeInTheDocument();
+    });
+  });
 });
 
-
-// test("fetches data when the button is clicked", async () => {
-//   render(<SearchComponent />);
-//   const searchField = screen.getByPlaceholderText("Enter a word...");
-//   const searchButton = screen.getByRole("button", { name: "Search" });
-
-//   fireEvent.change(searchField, { target: { value: "test" } });
-//   fireEvent.click(searchButton);
-
-//   // Wait for the data to be rendered
-//   await waitFor(() => {
-//     const wordElement = screen.getByText("test", { exact: false });
-//     expect(wordElement).toBeInTheDocument();
-//   });
-// });
-
-
-
+// Test for rendering an audio file if available in TextBox
 describe('Audio in TextBox', () => {
-test("should render an audio file if available", () => {
-  render(<SearchComponent searchResult={{ phonetics: [{ text: "example", audio: "example.mp3" }] }} />);
-  const user = userEvent.setup();
+  test("should render an audio file if available", () => {
+    // Render the SearchComponent with a search result containing an audio file
+    render(<SearchComponent searchResult={{ phonetics: [{ text: "example", audio: "example.mp3" }] }} />);
+    // Set up user event
+    const user = userEvent.setup();
+    const searchField = screen.getByRole("textbox");
+    const searchButton = screen.getByRole("button", { name: "Search" });
+    user.type(searchField, "book");
+    user.click(searchButton);
 
-  const searchField = screen.getByRole("textbox")
-  const searchButton = screen.getByRole("button", { name: "Search" });
-
-  user.type(searchField, "book");
-  user.click(searchButton);
-
-  // Add assertions for the audio element
-  const audioElement = screen.queryByRole("button");
-  expect(audioElement).toBeInTheDocument();
+    // Find the audio element in the rendered content
+    const audioElement = screen.queryByRole("button");
+    // Verify that the audio element is in the document
+    expect(audioElement).toBeInTheDocument();
+  });
 });
-});
 
-
+// Test for showing an error message when the search field is invalid or empty in SearchComponent
 describe('Errormessage in SearchComponent', () => {
-test("should show an error message when searchfield is invalid or empty", async () => {
-  // Render the SearchComponent
-  render(<SearchComponent />);
+  test("should show an error message when searchfield is invalid or empty", async () => {
+    render(<SearchComponent />);
   
-  // Performs the user interaction (click the search button)
-  const user = userEvent.setup();
-  const searchButton = screen.getByRole("button", { name: "Search" });
-  await user.click(searchButton);
+    const user = userEvent.setup();
+    const searchButton = screen.getByRole("button", { name: "Search" });
+    await user.click(searchButton);
+    // Use a matcher function to find the error message inside the <p>
+    const errorMessageElement = screen.getByText((content, element) => {
+      return element.tagName.toLowerCase() === 'p' && content.toLowerCase().includes('please enter a word');
+    });
 
-  // Use a matcher function to find the error message inside the <p>
-  const errorMessageElement = screen.getByText((content, element) => {
-    return element.tagName.toLowerCase() === 'p' && content.toLowerCase().includes('please enter a word');
+    // Verify that the error message element is in the document
+    expect(errorMessageElement).toBeInTheDocument();
   });
-  // Verify that the error message element is in the document
-  expect(errorMessageElement).toBeInTheDocument();
-  });
-
 });

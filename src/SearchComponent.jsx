@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import TextBox from './TextBox';
 
+// Function to handle the search logic
 function SearchComponent() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [searchResult, setSearchResult] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null); // Add error message state
+  const [errorMessage, setErrorMessage] = useState(null);
 
+// Check if the input is empty and if so, display an error 
   const handleSearch = async (word) => {
     if (!word.trim()) {
       setErrorMessage('Please enter a word');
       return;
     }
-    
-    setErrorMessage(null); 
+    setErrorMessage(null);
     setIsLoading(true);
+
+  // Fetch data from the API based on the entered word
     try {
       const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
       const data = await response.json();
@@ -23,6 +26,7 @@ function SearchComponent() {
       console.error('Error fetching data:', error);
       setSearchResult(null);
     }
+  // Set loading state back to false after the API request is complete
     setIsLoading(false);
   };
 
@@ -30,22 +34,23 @@ function SearchComponent() {
     <div>
       <h1>Dictionary</h1>
       <h2>Find your word</h2>
+      {/* Input field for the user to enter a word */}
       <input
         type="text"
         placeholder="Enter a word..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ height: '35px', width:"250px", color: 'beige', marginBottom: '20px', marginTop: '10px', border: "3px solid beige" }}
+        style={{ height: '35px', width: "250px", color: 'beige', marginBottom: '20px', marginTop: '10px', border: "3px solid beige" }}
       />
       <br />
-      <button style={{ marginBottom: '30px', backgroundColor:"beige", color: "#043606" }} onClick={() => handleSearch(searchTerm)}>
+      {/* Button to trigger the search function */}
+      <button style={{ marginBottom: '30px', backgroundColor: "beige", color: "#043606" }} onClick={() => handleSearch(searchTerm)}>
         Search
       </button>
       <br />
       {/* Display error message if it exists */}
       {errorMessage && <p style={{ color: 'beige' }}>{errorMessage}</p>}
 
-      {/* Pass searchResult to TextBox */}
       <TextBox searchResult={searchResult} searchTerm={searchTerm} />
     </div>
   );

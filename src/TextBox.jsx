@@ -7,14 +7,13 @@ function TextBox({ searchResult }) {
   };
 
   if (!searchResult) {
-    return null; // You might want to render a loading indicator or default message
+    return null; 
   }
-  console.log(searchResult);
 
   return (
     
     <div style={{ backgroundColor: "#043606" }}>
-      <h2>Word: {searchResult[0].word}</h2>     
+      <h2>{searchResult[0].word}</h2>     
 
       {/* Phonetics */}
       <h3>Phonetics:</h3>
