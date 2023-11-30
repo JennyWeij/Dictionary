@@ -7,6 +7,7 @@ function SearchComponent() {
   const [searchResult, setSearchResult] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  //Allows the user to hit the enter key to search
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       handleSearch(searchTerm);
