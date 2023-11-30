@@ -4,6 +4,7 @@ import { expect } from "vitest";
 import App from "./src/App";
 import SearchComponent from './src/SearchComponent';
 
+// Test if input field is rendering
 describe('Searchfield in SearchComponent', () => {
   test("renders input field", () => {
     render(<SearchComponent />);
@@ -16,7 +17,6 @@ describe('Searchfield in SearchComponent', () => {
 describe('Input in Searchfield', () => {
   test("valid input is processed by the search field", async () => {
     render(<SearchComponent errorMessageElement={""} />);
-    
     // Set up the user event
     const user = userEvent.setup();
     // Find the search field
@@ -35,17 +35,12 @@ describe('Input in Searchfield', () => {
 // Test for fetching and rendering data from the API when the button is clicked in App
 describe('Button in SearchComponent', () => {
   test("fetches and renders data from the API when the button is clicked", async () => {
-    // Render the App component
     render(<App />);
-    // Set up user event
     const user = userEvent.setup();
-    // Find the search field
     const searchField = screen.getByPlaceholderText("Enter a word...");
-    // Type "hello" into the search field
-    user.type(searchField, "hello");
-    // Find the search button
     const searchButton = screen.getByRole("button", { name: "Search" });
-    // Click the search button
+    
+    user.type(searchField, "hello");
     user.click(searchButton);
 
     // Wait for the data to be rendered
@@ -63,7 +58,6 @@ describe('Audio in TextBox', () => {
   test("should render an audio file if available", () => {
     // Render the SearchComponent with a search result containing an audio file
     render(<SearchComponent searchResult={{ phonetics: [{ text: "example", audio: "example.mp3" }] }} />);
-    // Set up user event
     const user = userEvent.setup();
     const searchField = screen.getByRole("textbox");
     const searchButton = screen.getByRole("button", { name: "Search" });
@@ -81,7 +75,6 @@ describe('Audio in TextBox', () => {
 describe('Errormessage in SearchComponent', () => {
   test("should show an error message when searchfield is invalid or empty", async () => {
     render(<SearchComponent />);
-  
     const user = userEvent.setup();
     const searchButton = screen.getByRole("button", { name: "Search" });
     await user.click(searchButton);
@@ -89,7 +82,6 @@ describe('Errormessage in SearchComponent', () => {
     const errorMessageElement = screen.getByText((content, element) => {
       return element.tagName.toLowerCase() === 'p' && content.toLowerCase().includes('please enter a word');
     });
-
     // Verify that the error message element is in the document
     expect(errorMessageElement).toBeInTheDocument();
   });
