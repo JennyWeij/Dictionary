@@ -1,4 +1,10 @@
+
 function TextBox({ searchResult }) {
+  const playAudio = (audioUrl) => {
+    const audioElement = new Audio(audioUrl);
+    audioElement.play();
+  };
+
   if (!searchResult) {
     return null; // You might want to render a loading indicator or default message
   }
@@ -15,10 +21,8 @@ function TextBox({ searchResult }) {
         <div key={index}>
           {phonetic.text} <br />
           {phonetic.audio && (
-            <audio controls>
-              <source src={phonetic.audio} type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
+            <div onClick = {() => playAudio(phonetic.audio)}>play audio
+            </div>
           )}
           {phonetic.sourceUrl && (
             <p>

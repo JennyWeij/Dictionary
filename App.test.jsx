@@ -46,21 +46,22 @@ test("valid input is processed by the search field", async () => {
 
 
 
-// describe('Audio in TextBox', () => {
-// test("should render an audio file if available", () => {
-//   render(<SearchComponent searchResult={{ phonetics: [{ text: "example", audio: "example.mp3" }] }} />);
+describe('Audio in TextBox', () => {
+test("should render an audio file if available", () => {
+  render(<SearchComponent searchResult={{ phonetics: [{ text: "example", audio: "example.mp3" }] }} />);
+  const user = userEvent.setup();
 
-//   const searchField = screen.getByRole("textbox")
-//   const searchButton = screen.getByRole("button", { name: "Search" });
+  const searchField = screen.getByRole("textbox")
+  const searchButton = screen.getByRole("button", { name: "Search" });
 
-//   fireEvent.change(searchField, { target: { value: "test" } });
-//   fireEvent.click(searchButton);
+  user.type(searchField, "book");
+  user.click(searchButton);
 
-//   // Add assertions for the audio element
-//   const audioElement = screen.queryByRole("audio");
-//   expect(audioElement).toBeInTheDocument();
-// });
-// });
+  // Add assertions for the audio element
+  const audioElement = screen.queryByRole("audio");
+  expect(audioElement).toBeInTheDocument();
+});
+});
 
 
 describe('Errormessage in SearchComponent', () => {
