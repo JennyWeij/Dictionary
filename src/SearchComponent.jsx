@@ -7,6 +7,12 @@ function SearchComponent() {
   const [searchResult, setSearchResult] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch(searchTerm);
+    }
+  };
+
 // Check if the input is empty and if so, display an error 
   const handleSearch = async (word) => {
     if (!word.trim()) {
@@ -38,6 +44,7 @@ function SearchComponent() {
         placeholder="Enter a word..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        onKeyPress={handleKeyPress}
         style={{ height: '35px', width: "250px", color: 'beige', marginBottom: '20px', marginTop: '10px', border: "3px solid beige" }}
       />
       <br />
