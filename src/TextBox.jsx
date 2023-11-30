@@ -1,3 +1,4 @@
+import { FaRegCirclePlay } from "react-icons/fa6";
 
 function TextBox({ searchResult }) {
   const playAudio = (audioUrl) => {
@@ -21,7 +22,8 @@ function TextBox({ searchResult }) {
         <div key={index}>
           {phonetic.text} <br />
           {phonetic.audio && (
-            <div onClick = {() => playAudio(phonetic.audio)}>play audio
+            <div onClick = {() => playAudio(phonetic.audio)}>
+              <FaRegCirclePlay style={{ fontSize: '48px', cursor: "pointer" }} />
             </div>
           )}
           {phonetic.sourceUrl && (
