@@ -1,6 +1,6 @@
 import { FaRegCirclePlay } from "react-icons/fa6";
 
-// Function to play audio based on the audio URL
+// Function to play audio based on the audio URL (the audio tag did not work so below code was the solution)
 function TextBox({ searchResult }) {
   const playAudio = (audioUrl) => {
     const audioElement = new Audio(audioUrl);
