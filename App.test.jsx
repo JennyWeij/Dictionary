@@ -40,13 +40,13 @@ describe('Button in SearchComponent', () => {
     const searchField = screen.getByPlaceholderText("Enter a word...");
     const searchButton = screen.getByRole("button", { name: "Search" });
     
-    user.type(searchField, "hello");
-    user.click(searchButton);
+    await user.type(searchField, "hello");
+    await user.click(searchButton);
 
     // Wait for the data to be rendered
     await waitFor(() => {
       // Find the word element in the rendered content
-      const wordElement = screen.getByText("hello", { exact: false });
+      const wordElement = screen.getByText("hello");
       // Verify that the word element is in the document
       expect(wordElement).toBeInTheDocument();
     });
