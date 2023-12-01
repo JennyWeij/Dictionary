@@ -1,8 +1,8 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { userEvent } from '@testing-library/user-event';
 import { expect } from "vitest";
-import App from "./src/App";
-import SearchComponent from './src/SearchComponent';
+import App from "../src/App";
+import SearchComponent from '../src/SearchComponent';
 
 // Test if input field is rendering
 describe('Searchfield in SearchComponent', () => {
