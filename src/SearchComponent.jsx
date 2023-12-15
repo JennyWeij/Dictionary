@@ -24,14 +24,24 @@ function SearchComponent() {
     setIsLoading(true);
 
   // Fetch data from the API based on the entered word
-    try {
-      const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+  try {
+    const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+    if (!response.ok) {
+      if (response.status === 404) {
+        setErrorMessage(`Word "${word}" not found. Please enter a valid word.`);
+      } else {
+        setErrorMessage('Error fetching data. Please try again later.');
+      }
+      setSearchResult(null);
+    } else {
       const data = await response.json();
       setSearchResult(data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      setSearchResult(null);
     }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    setErrorMessage('Error fetching data. Please try again later.');
+    setSearchResult(null);
+  }
     setIsLoading(false);
   };
 

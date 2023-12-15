@@ -71,7 +71,7 @@ describe('Audio in TextBox', () => {
   });
 });
 
-// Test for showing an error message when the search field is invalid or empty in SearchComponent
+// Test for showing an error message when the search field is invalid in SearchComponent
 describe('Errormessage in SearchComponent', () => {
   test("should show an error message when searchfield is invalid or empty", async () => {
     render(<SearchComponent />);
@@ -86,3 +86,7 @@ describe('Errormessage in SearchComponent', () => {
     expect(errorMessageElement).toBeInTheDocument();
   });
 });
+
+// Test for showing an error message when the search field is empty in SearchComponent
+
+
