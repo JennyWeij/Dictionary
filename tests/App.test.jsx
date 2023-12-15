@@ -87,7 +87,7 @@ describe('Errormessage in SearchComponent', () => {
   });
 });
 
-// Test for showing an error message when the search field is empty in SearchComponent
+// Test for showing an error message when the entered word does not exist in SearchComponent
 test('should show an error message when the entered word does not exist', async () => {
   render(<SearchComponent />);
   const user = userEvent.setup();
