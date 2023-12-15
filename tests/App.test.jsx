@@ -93,15 +93,14 @@ test('should show an error message when the entered word does not exist', async 
   const user = userEvent.setup();
   const searchButton = screen.getByRole('button', { name: 'Search' });
 
-  // Enter a non-existent word in the input field
+  // Enter a non-existing word in the input field
   const inputField = screen.getByPlaceholderText('Enter a word...');
-  await user.type(inputField, 'nonexistentword');
-
+  await user.type(inputField, 'nonexistingword');
   await user.click(searchButton);
   
   await waitFor(() => {
     const errorMessageElement = screen.getByText((content, element) => {
-      return element.tagName.toLowerCase() === 'p' && content.toLowerCase().includes('word "nonexistentword" not found');
+      return element.tagName.toLowerCase() === 'p' && content.toLowerCase().includes('word "nonexistingword" not found');
     });
 
     // Verify that the error message element is in the document
