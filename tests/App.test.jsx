@@ -88,5 +88,27 @@ describe('Errormessage in SearchComponent', () => {
 });
 
 // Test for showing an error message when the search field is empty in SearchComponent
+test('should show an error message when the entered word does not exist', async () => {
+  render(<SearchComponent />);
+  const user = userEvent.setup();
+  const searchButton = screen.getByRole('button', { name: 'Search' });
 
+  // Enter a non-existent word in the input field
+  const inputField = screen.getByPlaceholderText('Enter a word...');
+  await user.type(inputField, 'nonexistentword');
+
+  // Click the search button
+  await user.click(searchButton);
+
+  // Wait for the API call and error handling to complete
+  await waitFor(() => {
+    // Use a matcher function to find the error message inside the <p>
+    const errorMessageElement = screen.getByText((content, element) => {
+      return element.tagName.toLowerCase() === 'p' && content.toLowerCase().includes('word "nonexistentword" not found');
+    });
+
+    // Verify that the error message element is in the document
+    expect(errorMessageElement).toBeInTheDocument();
+  });
+});
 
