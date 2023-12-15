@@ -71,9 +71,9 @@ describe('Audio in TextBox', () => {
   });
 });
 
-// Test for showing an error message when the search field is invalid in SearchComponent
+// Test for showing an error message when the search field is empty in SearchComponent
 describe('Errormessage in SearchComponent', () => {
-  test("should show an error message when searchfield is invalid or empty", async () => {
+  test("should show an error message when searchfield is empty", async () => {
     render(<SearchComponent />);
     const user = userEvent.setup();
     const searchButton = screen.getByRole("button", { name: "Search" });
